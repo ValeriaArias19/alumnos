@@ -10,22 +10,32 @@ return array(
 	'name'=>'My Web Application',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	//'preload'=>array('log'),
+
+	// path aliases
+    'aliases' => array(
+    // yiistrap configuration
+    		'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change this if necessary
+    // yiiwheels configuration
+        'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
+    ),
 
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-	),
+		'bootstrap.helpers.TbHtml',
+    ),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
-		/*
+		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Enter Your Password Here',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+			'generatorPaths' => array('bootstrap.gii'),
 		),
 		*/
 	),
@@ -36,6 +46,13 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+		'bootstrap' => array(
+            'class' => 'bootstrap.components.TbApi',   
+         ),
+		 // yiiwheels configuration
+        'yiiwheels' => array(
+            'class' => 'yiiwheels.YiiWheels',   
+        ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
